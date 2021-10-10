@@ -9,6 +9,7 @@ local all_nodes = minetest.registered_nodes
 -- the provided mod_name and other_ingredient.  this relies on some standard
 -- suffixes to invoke leaves, moss, grass, etc.
 local function sloppy_dirt(mod_name, dirt_name, other_ingredient)
+   require make_dirt_recipe
 
    local suffixes = {
       "",
