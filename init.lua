@@ -5,11 +5,35 @@
 
 local all_nodes = minetest.registered_nodes
 
+local function make_dirt_recipe(dirt_name, other_ingredient)
+
+   -- minetest.log(dirt_name .. " can now be made with " .. other_ingredient)
+
+   -- NOTE: I am using a shaped recipe because I don't want to overwrite some
+   -- of the known shapeless recipes from ethereal, for example
+   minetest.register_craft({
+      output = dirt_name,
+      recipe = {
+         {other_ingredient},
+         {"default:dirt"}
+      }
+   })
+end
+
+local function make_permafrost_recipe(permafrost_name, other_ingredient)
+   minetest.register_craft({
+      output = permafrost_name,
+      recipe = {
+         {other_ingredient},
+         {"default:permafrost"}
+      }
+   })
+end
+
 -- this function attempts to figure out a reasonable recipe for dirt based on
 -- the provided mod_name and other_ingredient.  this relies on some standard
 -- suffixes to invoke leaves, moss, grass, etc.
 local function sloppy_dirt(mod_name, dirt_name, other_ingredient)
-   require make_dirt_recipe
 
    local suffixes = {
       "",
@@ -35,32 +59,6 @@ local function sloppy_dirt(mod_name, dirt_name, other_ingredient)
          end
       end
    end
-end
-
-
-local function make_dirt_recipe(dirt_name, other_ingredient)
-
-   -- minetest.log(dirt_name .. " can now be made with " .. other_ingredient)
-
-   -- NOTE: I am using a shaped recipe because I don't want to overwrite some
-   -- of the known shapeless recipes from ethereal, for example
-   minetest.register_craft({
-      output = dirt_name,
-      recipe = {
-         {other_ingredient},
-         {"default:dirt"}
-      }
-   })
-end
-
-local function make_permafrost_recipe(permafrost_name, other_ingredient)
-   minetest.register_craft({
-      output = permafrost_name,
-      recipe = {
-         {other_ingredient},
-         {"default:permafrost"}
-      }
-   })
 end
 
 -- look through all available registered nodes to find dirt blocks and then try
