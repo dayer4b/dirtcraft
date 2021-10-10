@@ -53,6 +53,16 @@ function make_dirt_recipe(dirt_name, other_ingredient)
    })
 end
 
+function make_permafrost_recipe(permafrost_name, other_ingredient)
+   minetest.register_craft({
+      output = permafrost_name,
+      recipe = {
+         {other_ingredient},
+         {"default:permafrost"}
+      }
+   })
+end
+
 -- look through all available registered nodes to find dirt blocks and then try
 -- to figure out the other ingredient for the dirt based on the name
 for key, value in pairs(all_nodes) do
@@ -81,3 +91,6 @@ sloppy_dirt("ethereal","ethereal:prairie_dirt","orange")
 sloppy_dirt("ethereal","ethereal:grove_dirt","banana")
 sloppy_dirt("ethereal","ethereal:grove_dirt","olive")
 sloppy_dirt("ethereal","ethereal:grove_dirt","lemon")
+
+make_permafrost_recipe("default:permafrost_with_moss","default:mossycobble")
+make_permafrost_recipe("default:permafrost_with_stones","default:cobble")
