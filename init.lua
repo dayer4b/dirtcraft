@@ -101,6 +101,7 @@ minetest.register_craft({
   recipe = {
     {"bucket:bucket_water"},
     {"default:dry_dirt"}
+
   },
   replacements = { {"bucket:bucket_water", "bucket:bucket_empty"}, }
 })
