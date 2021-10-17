@@ -68,13 +68,11 @@ for key, value in pairs(all_nodes) do
     local mod_name = string.gsub(key,":.*$","")
     
     if key:find("dirt_with",1, true) then
-      -- local other_ingredient = string.gsub(key,"^[a-z]+:dirt_with_","")
       local other_ingredient = key:gsub("^.*with_","")
       sloppy_dirt(mod_name, key, other_ingredient)
     end
     
     if key:find("_dirt",1,true) then
-      -- local other_ingredient = string.gsub(string.gsub(key,"^[a-z]+:",""),"_dirt","")
       local other_ingredient = key:gsub("^.*:(.*)_dirt$","%1")
       sloppy_dirt(mod_name, key, other_ingredient)
     end
@@ -103,10 +101,9 @@ minetest.register_craft({
   recipe = {
     {"bucket:bucket_water"},
     {"default:dry_dirt"}
-  }
-  replacements = {
-    {"bucket:bucket_empty"}
-  }
+
+  },
+  replacements = { {"bucket:bucket_water", "bucket:bucket_empty"}, }
 })
 
 minetest.register_craft({
