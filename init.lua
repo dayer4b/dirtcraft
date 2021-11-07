@@ -64,9 +64,9 @@ end
 -- look through all available registered nodes to find dirt blocks and then try
 -- to figure out the other ingredient for the dirt based on the name
 for key, value in pairs(all_nodes) do
-  if not key:find("stair",1,true)
-  and not key:find("light",1,true)
-  and key:find("dirt",1, true) then
+  if key:find("dirt",1, true)
+  and not key:find("stair",1,true)
+  and not key:find("light",1,true) then
     local mod_name = string.gsub(key,":.*$","")
     
     if key:find("dirt_with",1, true) then
